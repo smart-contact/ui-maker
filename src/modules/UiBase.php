@@ -21,7 +21,13 @@ class UiBase implements UIBaseContract
     protected $formCreate;
     protected $columns;
     protected $import;
+    protected $advancedFilter;
 
+    protected static $advancedFilterTypes = [
+        'TEXT' => 'text',
+        'SELECT' => 'select',
+        'DATE' => 'date',
+    ];
 
     public function __construct()
     {
@@ -48,7 +54,8 @@ class UiBase implements UIBaseContract
                 'sort' => $this->sort,
                 'columns' => $this->retrieveColumns(),
                 'per_page' => 100
-            ]
+            ],
+            'advancedFilter' => $this->retrieveAdvancedFilter()
         ];
     }
 
@@ -83,5 +90,40 @@ class UiBase implements UIBaseContract
     protected function retrieveImport(): array
     {
         return $this->import ?? [];
+    }
+
+    protected function retrieveAdvancedFilter(): array
+    {
+        return $this->advancedFilter ?? [];
+    }
+
+    protected function retrieveOperatorsByFilterType($filterType)
+    {
+        switch($filterType) {
+            case "date": {
+                return [
+                    [ "value" => "=", "label" => "=", "kind" => "single" ],
+                    [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
+                    [ "value" => "in between", "label" => "compreso tra", "kind" => "range" ],
+                    [ "value" => "not between", "label" => "non compreso tra", "kind" => "range" ],
+                ];
+                break;
+            }
+            case "select": {
+                return [
+                    [ "value" => "=", "label" => "=", "kind" => "single" ],
+                    [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
+                    [ "value" => "in between", "label" => "compreso tra", "kind" => "range" ],
+                    [ "value" => "not between", "label" => "non compreso tra", "kind" => "range" ],
+                ];
+                break;
+            }
+            default: {
+                return [
+                    [ "value" => "=", "label" => "=", "kind" => "single" ],
+                    [ "value" => ">", "label" => "maggiore di", "kind" => "single" ]
+                ];
+            }
+        }
     }
 }

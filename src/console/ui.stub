@@ -32,7 +32,7 @@ class {{ class }} extends UiBase
                 'key' => 'roles',
                 'multiple' => true,
                 'data' => [
-                    'store' => 'roles',
+                    'resource' => 'roles',
                     'label' => 'name',
                     'value' => 'id'
                 ]
@@ -40,6 +40,13 @@ class {{ class }} extends UiBase
         ];
         $this->routes = [
             'store' => '/api/{{ resource }}',
+            'update' => '/api/{{ resource }}/{id}',
+            'show' => '/api/{{ resource }}/{id}',
+            'update' => '/api/{{ resource }}/{id}',
+            'delete' => '/api/{{ resource }}/{id}',
+            'trash' => '/api/{{ resource }}/trash',
+            'restore' => '/api/{{ resource }}/{id}/restore',
+            'destroy' => '/api/{{ resource }}/{id}/force',
         ];
         $this->import = [
             'exampleFile' => 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_10.xls',
@@ -49,6 +56,14 @@ class {{ class }} extends UiBase
                     'label' => 'name',
                     'value' => 'id'
                 ],*/
+            ]
+        ];
+        $this->advancedFilter = [
+            [
+                label => "date",
+                key => "date",
+                type => self::advancedFilterType["DATE"],
+                operators =>$this->retrieveOperatorsByFilterType(self::advancedFilterType["DATE"]),
             ]
         ];
         parent::__construct();
