@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Modules\Ui;
+
+use SmartContact\UiMaker\modules\UiBase;
+
+class {{ class }} extends UiBase
+{
+    public function __construct()
+    {
+        $this->resource = '{{ resource }}';
+        $this->sort = [
+            'column' => 'id',
+            'direction' => 'asc'
+        ];
+        $this->columns = [
+            /*[
+                'label' => trans('validation.attributes.first_name'),
+                'key'   => 'name',
+                'sortable' => true
+            ]*/
+        ];
+        $this->formCreate = [
+            /*[
+                'type' => 'text',
+                'label' => trans('validation.attributes.first_name'),
+                'key' => 'name'
+            ],
+            [
+                'type' => 'select',
+                'label' => trans('validation.attributes.roles'),
+                'key' => 'roles',
+                'multiple' => true,
+                'data' => [
+                    'store' => 'roles',
+                    'label' => 'name',
+                    'value' => 'id'
+                ]
+            ]*/
+        ];
+        $this->routes = [
+            'store' => '/api/{{ resource }}',
+        ];
+        $this->import = [
+            'exampleFile' => 'https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_10.xls',
+            'relations' => [
+                /*trans('validation.attributes.roles') => [
+                    'store' => 'roles',
+                    'label' => 'name',
+                    'value' => 'id'
+                ],*/
+            ]
+        ];
+        parent::__construct();
+    }
+}

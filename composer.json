@@ -1,0 +1,30 @@
+{
+    "name": "smart-contact/ui-maker",
+    "authors": [
+        {
+            "name": "Andrea Ortu",
+            "email": "andrea.ortu@smart-contact.it"
+        },
+        {
+            "name": "Matteo Meloni",
+            "email": "matteo.meloni@smart-contact.it"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "SmartContact\\UiMaker\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SmartContact\\UiMaker\\UiMakerProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+
+}
