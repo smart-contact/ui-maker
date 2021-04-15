@@ -102,7 +102,7 @@ class UiBase implements UIBaseContract
         switch($filterType) {
             case "date": {
                 return [
-                    [ "value" => "=", "label" => "=", "kind" => "single" ],
+                    [ "value" => "=", "label" => "uguale", "kind" => "single" ],
                     [ "value" => "!=", "label" => "diverso", "kind" => "single" ],
                     [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
                     [ "value" => "<", "label" => "minore di", "kind" => "single" ],
@@ -113,7 +113,8 @@ class UiBase implements UIBaseContract
             }
             case "select": {
                 return [
-                    [ "value" => "!=", "label" => "=", "kind" => "single" ],
+                    [ "value" => "=", "label" => "uguale", "kind" => "single" ],
+                    [ "value" => "!=", "label" => "diverso", "kind" => "single" ],
                     [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
                     [ "value" => "in", "label" => "In", "kind" => "range" ],
                 ];
@@ -121,7 +122,7 @@ class UiBase implements UIBaseContract
             }
             default: {
                 return [
-                    [ "value" => "=", "label" => "=", "kind" => "single" ],
+                    [ "value" => "=", "label" => "uguale", "kind" => "single" ],
                     [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
                     [ "value" => "!=", "label" => "diverso", "kind" => "single" ],
                     [ "value" => "<", "label" => "minore di", "kind" => "single" ],
