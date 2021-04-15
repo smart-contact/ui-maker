@@ -103,25 +103,29 @@ class UiBase implements UIBaseContract
             case "date": {
                 return [
                     [ "value" => "=", "label" => "=", "kind" => "single" ],
+                    [ "value" => "!=", "label" => "diverso", "kind" => "single" ],
                     [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
-                    [ "value" => "in between", "label" => "compreso tra", "kind" => "range" ],
+                    [ "value" => "<", "label" => "minore di", "kind" => "single" ],
+                    [ "value" => "between", "label" => "compreso tra", "kind" => "range" ],
                     [ "value" => "not between", "label" => "non compreso tra", "kind" => "range" ],
                 ];
                 break;
             }
             case "select": {
                 return [
-                    [ "value" => "=", "label" => "=", "kind" => "single" ],
+                    [ "value" => "!=", "label" => "=", "kind" => "single" ],
                     [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
-                    [ "value" => "in between", "label" => "compreso tra", "kind" => "range" ],
-                    [ "value" => "not between", "label" => "non compreso tra", "kind" => "range" ],
+                    [ "value" => "in", "label" => "In", "kind" => "range" ],
                 ];
                 break;
             }
             default: {
                 return [
                     [ "value" => "=", "label" => "=", "kind" => "single" ],
-                    [ "value" => ">", "label" => "maggiore di", "kind" => "single" ]
+                    [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
+                    [ "value" => "!=", "label" => "diverso", "kind" => "single" ],
+                    [ "value" => "<", "label" => "minore di", "kind" => "single" ],
+                    [ "value" => "between", "label" => "compreso tra", "kind" => "range" ],
                 ];
             }
         }
