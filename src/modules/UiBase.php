@@ -7,15 +7,8 @@ use Illuminate\Support\Str;
 
 class UiBase implements UIBaseContract
 {
-    protected $resource;
     protected $permissions;
-    protected $create;
-    protected $view;
-    protected $update;
-    protected $delete;
-    protected $destroy;
-    protected $restore;
-    protected $trash;
+    protected $resource;
     protected $sort;
     protected $routes;
     protected $formCreate;
@@ -31,22 +24,12 @@ class UiBase implements UIBaseContract
 
     public function __construct()
     {
-        $this->permissions = $this->retrieveResourcePermissions();
+
     }
 
     public function retrieveUi(): array
     {
         return [
-            'permissions' => [
-                'create' => $this->can('create'),
-                'view' => $this->can('view'),
-                'update' => $this->can('update'),
-                'delete' => $this->can('delete'),
-                'destroy' => $this->can('destroy'),
-                'trash' => $this->can('trash'),
-                'restore' => $this->can('restore'),
-                'import' => $this->can('import')
-            ],
             'create' => $this->retrieveFormCreate(),
             'routes' => $this->retrieveRoutes(),
             'import' => $this->retrieveImport(),
@@ -59,14 +42,15 @@ class UiBase implements UIBaseContract
         ];
     }
 
-    protected function can($action): bool
+    public function can($action): bool
     {
         return in_array($action, $this->permissions);
     }
 
-    protected function retrieveResourcePermissions(): array
+    public function setMircroservicePermissions($microservice): array
     {
-        return auth()->user()->retrievePermissions()
+        $this->permissions = auth()->user()->retrievePermissions()
+            ->where('microservice', Str::singular($microservice))
             ->where('resource', Str::singular($this->resource))
             ->pluck('action')
             ->toArray();

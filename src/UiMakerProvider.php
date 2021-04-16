@@ -4,6 +4,7 @@ namespace SmartContact\UiMaker;
 
 use SmartContact\UiMaker\console\MakeUi;
 use SmartContact\UiMaker\console\InstallCommand;
+use SmartContact\UiMaker\modules\ToMicroservice;
 use SmartContact\UiMaker\modules\UIBaseContract;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
@@ -19,9 +20,17 @@ class UiMakerProvider extends ServiceProvider
     public function register()
     {
         app()->singleton(UIBaseContract::class, function() {
+            $microservice = request()->route('microservice');
             $resource = request()->route('resource');
-            $class = "App\Modules\Ui\Ui" . Str::ucfirst(Str::singular($resource));
-            return new $class();
+            $isFinalMicroservice = request()->is_final_microservice || $microservice == 'apigateway';
+            if($isFinalMicroservice) {
+                $class = "App\Modules\Ui\Ui" . Str::ucfirst(Str::singular($resource));
+                return new $class();
+            }
+
+            $url = "";
+            //$url = retrieveBaseUrlBy($microservice);
+            return new ToMicroservice($url);
         });
     }
 
