@@ -9,6 +9,7 @@ use SmartContact\UiMaker\modules\UIBaseContract;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Models\Microservice;
 
 class UiMakerProvider extends ServiceProvider
 {
@@ -28,9 +29,8 @@ class UiMakerProvider extends ServiceProvider
                 return new $class();
             }
 
-            $url = "";
-            //$url = retrieveBaseUrlBy($microservice);
-            return new ToMicroservice($url);
+            $url = Microservice::retrieveBaseUrlBy($microservice);
+            return new ToMicroservice($url, $microservice, $resource);
         });
     }
 
