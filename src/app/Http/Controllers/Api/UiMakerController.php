@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 class UiMakerController extends ApiBaseController
 {
+    public function __construct()
+    {
+        if(!request()->is_final_microservice || request()->microservice == 'api-gateway') {
+            $this->middleware('auth:sanctum');
+        }
+    }
+
     public function retrieveUi(UIBaseContract $UIBase)
     {
         $ui = $UIBase->retrieveUi();
