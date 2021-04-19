@@ -1,6 +1,6 @@
 <?php
 
-Route::middleware(['api', 'auth:sanctum'])
+Route::middleware(['api'])
     ->prefix('api/ui')
         ->as('ui.')
         ->group(function() {
