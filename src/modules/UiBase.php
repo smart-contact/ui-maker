@@ -102,7 +102,7 @@ class UiBase implements UIBaseContract
                     [ "value" => "=", "label" => "uguale", "kind" => "single" ],
                     [ "value" => "!=", "label" => "diverso", "kind" => "single" ],
                     [ "value" => ">", "label" => "maggiore di", "kind" => "single" ],
-                    [ "value" => "in", "label" => "In", "kind" => "range" ],
+                    [ "value" => "in", "label" => "In", "kind" => "multiple" ],
                 ];
                 break;
             }
