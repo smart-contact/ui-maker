@@ -12,19 +12,17 @@ class UiMakerController extends ApiBaseController
     {
         $ui = $UIBase->retrieveUi();
 
-        if(! request()->is_final_microservice || request()->microservice == 'api-gateway') {
+        if (!request()->is_final_microservice || request()->microservice == 'api-gateway') {
             $UIBase->setMircroservicePermissions(request()->microservice);
             return array_merge($ui, ['permissions' => [
-                'permissions' => [
-                    'create' => $UIBase->can('create'),
-                    'view' => $UIBase->can('view'),
-                    'update' => $UIBase->can('update'),
-                    'delete' => $UIBase->can('delete'),
-                    'destroy' => $UIBase->can('destroy'),
-                    'trash' => $UIBase->can('trash'),
-                    'restore' => $UIBase->can('restore'),
-                    'import' => $UIBase->can('import')
-                ],
+                'create' => $UIBase->can('create'),
+                'view' => $UIBase->can('view'),
+                'update' => $UIBase->can('update'),
+                'delete' => $UIBase->can('delete'),
+                'destroy' => $UIBase->can('destroy'),
+                'trash' => $UIBase->can('trash'),
+                'restore' => $UIBase->can('restore'),
+                'import' => $UIBase->can('import')
             ]]);
         }
 
