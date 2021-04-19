@@ -47,11 +47,12 @@ class UiBase implements UIBaseContract
         return in_array($action, $this->permissions);
     }
 
-    public function setMircroservicePermissions($microservice)
+    public function setMircroservicePermissions($microservice, $resource)
     {
+        $resource = $resource ?? $this->resource;
         $this->permissions = auth()->user()->retrievePermissions()
             ->where('microservice', Str::singular($microservice))
-            ->where('resource', Str::singular($this->resource))
+            ->where('resource', Str::singular($resource))
             ->pluck('action')
             ->toArray();
     }
