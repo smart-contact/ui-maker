@@ -22,7 +22,7 @@ class UiMakerProvider extends ServiceProvider
         app()->singleton(UIBaseContract::class, function() {
             $microservice = request()->route('microservice');
             $resource = request()->route('resource');
-            $isFinalMicroservice = request()->is_final_microservice || $microservice == 'apigateway';
+            $isFinalMicroservice = request()->is_final_microservice || $microservice == 'api-gateway';
             if($isFinalMicroservice) {
                 $class = "App\Modules\Ui\Ui" . Str::ucfirst(Str::singular($resource));
                 return new $class();

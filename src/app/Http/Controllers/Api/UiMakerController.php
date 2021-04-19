@@ -12,7 +12,7 @@ class UiMakerController extends ApiBaseController
     {
         $ui = $UIBase->retrieveUi();
 
-        if(! request()->is_final_microservice || request()->microservice == 'apigateway') {
+        if(! request()->is_final_microservice || request()->microservice == 'api-gateway') {
             $UIBase->setMircroservicePermissions(request()->microservice);
             return array_merge($ui, ['permissions' => [
                 'permissions' => [
