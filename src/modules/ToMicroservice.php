@@ -13,7 +13,8 @@ class ToMicroservice implements UIBaseContract
 
     public function __construct($url, $microservice, $resource)
     {
-        $this->url = "$url/api/ui/retrieve/$microservice/$resource?is_final_microservice=true";
+        $parameters = http_build_query(array_merge(request()->all()));
+        $this->url = "$url/api/ui/retrieve/$microservice/$resource?is_final_microservice=true&$parameters";
     }
 
     public function retrieveUi(): array
