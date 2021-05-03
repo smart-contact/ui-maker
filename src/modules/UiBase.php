@@ -65,6 +65,7 @@ class UiBase implements UIBaseContract
     protected function retrieveRoutes(): array
     {
         return collect($this->routes)->map(function ($route,$key){
+            $key = $key == 'store' ? 'create' : $key;
             return "$route?resource={$this->resource}&action=$key";
         })->toArray();
     }
