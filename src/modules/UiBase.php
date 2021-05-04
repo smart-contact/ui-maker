@@ -66,6 +66,7 @@ class UiBase implements UIBaseContract
     {
         return collect($this->routes)->map(function ($route,$key){
             $key = $key == 'store' ? 'create' : $key;
+            $key = $key == 'show' ? 'view' : $key;
             return "$route?resource={$this->resource}&action=$key";
         })->toArray();
     }
