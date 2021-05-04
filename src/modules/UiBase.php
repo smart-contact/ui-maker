@@ -31,7 +31,7 @@ class UiBase implements UIBaseContract
     {
         return [
             'create' => $this->retrieveFormCreate(),
-            'routes' => $this->retrieveRoutes(),
+            'routes' => $this->routes,
             'import' => $this->retrieveImport(),
             'table' => [
                 'sort' => $this->sort,
@@ -60,15 +60,6 @@ class UiBase implements UIBaseContract
     protected function retrieveColumns(): array
     {
         return $this->columns;
-    }
-
-    protected function retrieveRoutes(): array
-    {
-        return collect($this->routes)->map(function ($route,$key){
-            $key = $key == 'store' ? 'create' : $key;
-            $key = $key == 'show' ? 'view' : $key;
-            return "$route?resource={$this->resource}&action=$key";
-        })->toArray();
     }
 
     protected function retrieveFormCreate(): array
