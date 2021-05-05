@@ -15,6 +15,7 @@ class UiBase implements UIBaseContract
     protected $columns;
     protected $import;
     protected $advancedFilter;
+    protected $otherInfo = [];
 
     protected static $advancedFilterTypes = [
         'TEXT' => 'text',
@@ -55,6 +56,11 @@ class UiBase implements UIBaseContract
             ->where('resource', Str::singular($resource))
             ->pluck('action')
             ->toArray();
+    }
+
+    protected function retrieveOtherInfo(): array
+    {
+        return $this->otherInfo;
     }
 
     protected function retrieveColumns(): array
