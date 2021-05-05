@@ -39,7 +39,8 @@ class UiBase implements UIBaseContract
                 'columns' => $this->retrieveColumns(),
                 'per_page' => 100
             ],
-            'advancedFilter' => $this->retrieveAdvancedFilter()
+            'advancedFilter' => $this->retrieveAdvancedFilter(),
+            'otherInfo' => $this->retrieveOtherInfo()
         ];
     }
 
